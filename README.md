@@ -17,5 +17,5 @@ dependencies {
 
 gradle.properties ->
 ```groovy
-exdimapi_version=1.0.0
+exdimapi_version=1.0.1
 ```
