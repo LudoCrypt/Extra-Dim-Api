@@ -16,6 +16,7 @@ import net.ludocrypt.exdimapi.mixin.DimensionTypeAccessor;
 import net.ludocrypt.exdimapi.mixin.MultiNoiseBiomeSourceAccessor;
 import net.ludocrypt.exdimapi.util.DimensionUtil;
 import net.ludocrypt.exdimapi.util.MusicController;
+import net.ludocrypt.exdimapi.util.NoiseSettings;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.render.SkyProperties;
 import net.minecraft.tag.BlockTags;
@@ -49,13 +50,13 @@ public class ExtraDimension {
 	public final SkyProperties SKY_PROPERTIES;
 	public final Map<RegistryKey<Biome>, Biome.MixedNoisePoint> NOISE_POINTS;
 	public final MultiNoiseBiomeSource.Preset BIOME_SOURCE_PRESET;
-	public final MultiNoiseBiomeSource.NoiseParameters TEMPERATURE_NOISE;
-	public final MultiNoiseBiomeSource.NoiseParameters HUMIDITY_NOISE;
-	public final MultiNoiseBiomeSource.NoiseParameters ALTITUDE_NOISE;
-	public final MultiNoiseBiomeSource.NoiseParameters WEIRDNESS_NOISE;
+	public final NoiseSettings TEMPERATURE_NOISE;
+	public final NoiseSettings HUMIDITY_NOISE;
+	public final NoiseSettings ALTITUDE_NOISE;
+	public final NoiseSettings WEIRDNESS_NOISE;
 	public final ChunkGeneratorSettings CHUNK_GENERATION_SETTINGS;
 
-	public ExtraDimension(Identifier id, DimensionType dimensionType, SkyProperties skyProperties, MusicController musicController, MultiNoiseBiomeSource.NoiseParameters temperatureNoiseParameters, MultiNoiseBiomeSource.NoiseParameters humidityNoiseParameters, MultiNoiseBiomeSource.NoiseParameters altitudeNoiseParameters, MultiNoiseBiomeSource.NoiseParameters weirdnessNoiseParameters, ChunkGeneratorSettings chunkGenerationSettings, Map<RegistryKey<Biome>, Biome.MixedNoisePoint> noisePoints) {
+	public ExtraDimension(Identifier id, DimensionType dimensionType, SkyProperties skyProperties, MusicController musicController, NoiseSettings temperatureNoiseParameters, NoiseSettings humidityNoiseParameters, NoiseSettings altitudeNoiseParameters, NoiseSettings weirdnessNoiseParameters, ChunkGeneratorSettings chunkGenerationSettings, Map<RegistryKey<Biome>, Biome.MixedNoisePoint> noisePoints) {
 		this.LOCAL_ID = id;
 		this.WORLD = DimensionUtil.getWorld(LOCAL_ID);
 		this.DIMENSION_KEY = DimensionUtil.getDimensionType(LOCAL_ID);
@@ -97,10 +98,10 @@ public class ExtraDimension {
 
 		};
 		private SkyProperties SKY_PROPERTIES = SkyProperties.byDimensionType(DIMENSION_TYPE);
-		private MultiNoiseBiomeSource.NoiseParameters TEMPERATURE_NOISE = new MultiNoiseBiomeSource.NoiseParameters(-7, ImmutableList.of(1.0D, 1.0D));
-		private MultiNoiseBiomeSource.NoiseParameters HUMIDITY_NOISE = new MultiNoiseBiomeSource.NoiseParameters(-7, ImmutableList.of(1.0D, 1.0D));
-		private MultiNoiseBiomeSource.NoiseParameters ALTITUDE_NOISE = new MultiNoiseBiomeSource.NoiseParameters(-7, ImmutableList.of(1.0D, 1.0D));
-		private MultiNoiseBiomeSource.NoiseParameters WEIRDNESS_NOISE = new MultiNoiseBiomeSource.NoiseParameters(-7, ImmutableList.of(1.0D, 1.0D));
+		private NoiseSettings TEMPERATURE_NOISE = new NoiseSettings(-7, ImmutableList.of(1.0D, 1.0D));
+		private NoiseSettings HUMIDITY_NOISE = new NoiseSettings(-7, ImmutableList.of(1.0D, 1.0D));
+		private NoiseSettings ALTITUDE_NOISE = new NoiseSettings(-7, ImmutableList.of(1.0D, 1.0D));
+		private NoiseSettings WEIRDNESS_NOISE = new NoiseSettings(-7, ImmutableList.of(1.0D, 1.0D));
 		private ChunkGeneratorSettings CHUNK_GENERATION_SETTINGS = ChunkGeneratorSettingsAccessor.invokeCreateSurfaceSettings(new StructuresConfig(true), false, ChunkGeneratorSettings.OVERWORLD.getValue());
 		private Map<RegistryKey<Biome>, Biome.MixedNoisePoint> NOISE_POINTS = new HashMap<>();
 
@@ -138,22 +139,22 @@ public class ExtraDimension {
 			return this;
 		}
 
-		public Builder setTemperatureNoise(MultiNoiseBiomeSource.NoiseParameters noise) {
+		public Builder setTemperatureNoise(NoiseSettings noise) {
 			this.TEMPERATURE_NOISE = noise;
 			return this;
 		}
 
-		public Builder setHumidityNoise(MultiNoiseBiomeSource.NoiseParameters noise) {
+		public Builder setHumidityNoise(NoiseSettings noise) {
 			this.HUMIDITY_NOISE = noise;
 			return this;
 		}
 
-		public Builder setAltitudeNoise(MultiNoiseBiomeSource.NoiseParameters noise) {
+		public Builder setAltitudeNoise(NoiseSettings noise) {
 			this.ALTITUDE_NOISE = noise;
 			return this;
 		}
 
-		public Builder setWeirdnessNoise(MultiNoiseBiomeSource.NoiseParameters noise) {
+		public Builder setWeirdnessNoise(NoiseSettings noise) {
 			this.WEIRDNESS_NOISE = noise;
 			return this;
 		}
@@ -184,19 +185,19 @@ public class ExtraDimension {
 			return SKY_PROPERTIES;
 		}
 
-		public MultiNoiseBiomeSource.NoiseParameters getTemperatureNoise() {
+		public NoiseSettings getTemperatureNoise() {
 			return TEMPERATURE_NOISE;
 		}
 
-		public MultiNoiseBiomeSource.NoiseParameters getHumidityNoise() {
+		public NoiseSettings getHumidityNoise() {
 			return HUMIDITY_NOISE;
 		}
 
-		public MultiNoiseBiomeSource.NoiseParameters getAltitudeNoise() {
+		public NoiseSettings getAltitudeNoise() {
 			return ALTITUDE_NOISE;
 		}
 
-		public MultiNoiseBiomeSource.NoiseParameters getWeirdnessNoise() {
+		public NoiseSettings getWeirdnessNoise() {
 			return WEIRDNESS_NOISE;
 		}
 
