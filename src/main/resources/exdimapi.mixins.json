@@ -12,7 +12,7 @@
 	],
 	"client": [
 		"MinecraftClientMixin",
-		"SkyPropertiesMixin"
+		"SkyPropertiesAccessor"
 	],
 	"injectors": {
 		"defaultRequire": 1

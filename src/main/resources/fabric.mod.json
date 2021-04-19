@@ -17,6 +17,9 @@
 	"entrypoints": {
 		"main": [
 			"net.ludocrypt.exdimapi.ExtraDims"
+		],
+		"client": [
+			"net.ludocrypt.exdimapi.ExtraDimsClient"
 		]
 	},
 	"mixins": [
