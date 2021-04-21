@@ -18,7 +18,6 @@ import net.ludocrypt.exdimapi.util.DimensionUtil;
 import net.ludocrypt.exdimapi.util.MusicController;
 import net.ludocrypt.exdimapi.util.NoiseSettings;
 import net.minecraft.block.BlockState;
-import net.minecraft.client.render.SkyProperties;
 import net.minecraft.tag.BlockTags;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.BuiltinRegistries;
@@ -47,7 +46,7 @@ public class ExtraDimension {
 	public final RegistryKey<ChunkGeneratorSettings> CHUNK_GENERATION_KEY;
 	public final DimensionType DIMENSION_TYPE;
 	public final MusicController MUSIC_SOUND_CONTROLLER;
-	public final SkyProperties SKY_PROPERTIES;
+	public final Identifier SKY_PROPERTIES;
 	public final Map<RegistryKey<Biome>, Biome.MixedNoisePoint> NOISE_POINTS;
 	public final MultiNoiseBiomeSource.Preset BIOME_SOURCE_PRESET;
 	public final NoiseSettings TEMPERATURE_NOISE;
@@ -56,7 +55,7 @@ public class ExtraDimension {
 	public final NoiseSettings WEIRDNESS_NOISE;
 	public final ChunkGeneratorSettings CHUNK_GENERATION_SETTINGS;
 
-	public ExtraDimension(Identifier id, DimensionType dimensionType, SkyProperties skyProperties, MusicController musicController, NoiseSettings temperatureNoiseParameters, NoiseSettings humidityNoiseParameters, NoiseSettings altitudeNoiseParameters, NoiseSettings weirdnessNoiseParameters, ChunkGeneratorSettings chunkGenerationSettings, Map<RegistryKey<Biome>, Biome.MixedNoisePoint> noisePoints) {
+	public ExtraDimension(Identifier id, DimensionType dimensionType, Identifier skyProperties, MusicController musicController, NoiseSettings temperatureNoiseParameters, NoiseSettings humidityNoiseParameters, NoiseSettings altitudeNoiseParameters, NoiseSettings weirdnessNoiseParameters, ChunkGeneratorSettings chunkGenerationSettings, Map<RegistryKey<Biome>, Biome.MixedNoisePoint> noisePoints) {
 		this.LOCAL_ID = id;
 		this.WORLD = DimensionUtil.getWorld(LOCAL_ID);
 		this.DIMENSION_KEY = DimensionUtil.getDimensionType(LOCAL_ID);
@@ -97,7 +96,7 @@ public class ExtraDimension {
 		private MusicController MUSIC_SOUND_CONTROLLER = (dim, client, ci) -> {
 
 		};
-		private SkyProperties SKY_PROPERTIES = SkyProperties.byDimensionType(DIMENSION_TYPE);
+		private Identifier SKY_PROPERTIES = DimensionType.OVERWORLD_ID;
 		private NoiseSettings TEMPERATURE_NOISE = new NoiseSettings(-7, ImmutableList.of(1.0D, 1.0D));
 		private NoiseSettings HUMIDITY_NOISE = new NoiseSettings(-7, ImmutableList.of(1.0D, 1.0D));
 		private NoiseSettings ALTITUDE_NOISE = new NoiseSettings(-7, ImmutableList.of(1.0D, 1.0D));
@@ -134,7 +133,7 @@ public class ExtraDimension {
 			return this;
 		}
 
-		public Builder setSkyProperties(SkyProperties skyProperties) {
+		public Builder setSkyProperties(Identifier skyProperties) {
 			this.SKY_PROPERTIES = skyProperties;
 			return this;
 		}
@@ -181,7 +180,7 @@ public class ExtraDimension {
 			return MUSIC_SOUND_CONTROLLER;
 		}
 
-		public SkyProperties getSkyProperties() {
+		public Identifier getSkyProperties() {
 			return SKY_PROPERTIES;
 		}
 
